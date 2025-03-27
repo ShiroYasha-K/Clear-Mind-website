@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clear Mind – Mental Health Awareness</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: url('mental_health.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+      position: relative;
+      color: #fff;
+    }
+
+    /* Dark overlay with gradient for depth */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+      z-index: -2;
+    }
+
+    /* Fancy buttons styling */
+    .btn {
+      position: fixed;
+      padding: 12px 24px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+    
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.6);
+    }
+    
+    .top-left {
+      top: 20px;
+      left: 20px;
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      animation-delay: 0.5s;
+    }
+    
+    .top-right {
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(45deg, #00b09b, #96c93d);
+      animation-delay: 0.7s;
+    }
+    
+    /* Main Content Container with glassmorphism effect */
+    .container {
+      max-width: 900px;
+      margin: 120px auto 150px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 1.2s forwards;
+    }
+    
+    .container h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    }
+    
+    .container p {
+      font-size: 20px;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 8px rgba(0,0,0,0.7);
+      line-height: 1.5;
+    }
+    
+    /* Social Media Section with increased spacing */
+    #socialMedia {
+      width: 100%;
+      text-align: center;
+      font-size: 20px;
+      letter-spacing: 1px;
+      margin-top: 150px;
+      padding-bottom: 30px;
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+      animation-delay: 1.4s;
+    }
+    
+    #socialMedia h2 {
+      margin: 10px 0;
+      font-weight: 300;
+    }
+    
+    /* Chatbox styling with smooth animation */
+    #chatbox {
+      display: none;
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      width: 340px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 15px;
+      padding: 20px;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      animation: slideDown 0.5s ease-out;
+    }
+    
+    #chatbox label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #ddd;
+    }
+    
+    #chatbox span#userEmail {
+      font-weight: 300;
+      color: #ccc;
+    }
+    
+    #chatbox textarea {
+      width: 100%;
+      height: 80px;
+      margin-bottom: 10px;
+      resize: none;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-family: 'Roboto', sans-serif;
+    }
+    
+    #chatbox button {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+    
+    #chatbox button:hover {
+      background: linear-gradient(45deg, #5a67d8, #6b46c1);
+    }
+    
+    /* Keyframes for fade-in and slide-down animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .container {
+        margin: 100px 20px 120px 20px;
+        padding: 20px;
+      }
+      .btn {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+      #chatbox {
+        width: 280px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Top-left "Need Help?" button -->
+  <button class="btn top-left" onclick="redirectToHelp()">Need Help?</button>
+  
+  <!-- Top-right "Message Us!" button -->
+  <button class="btn top-right" onclick="promptForGmail()">Message Us!</button>
+  
+  <!-- Main Content Container -->
+  <div class="container">
+    <h1>Welcome to Clear Mind – Mental Health Awareness Campaign</h1>
+    <p>
+      At Batangas Eastern Colleges (BEC), we recognize that mental health is just as important as physical well-being.
+      College life comes with challenges—academic pressures, personal struggles, and the need to balance multiple responsibilities.
+      That’s why we launched this Mental Health Awareness Campaign—to create a safe space where students can find support,
+      learn coping strategies, and break the stigma surrounding mental health.
+    </p>
+    <p>
+      Through informative resources, interactive activities, and peer support initiatives, we aim to empower students
+      to take care of their mental well-being. Whether you're looking for stress management tips, professional guidance,
+      or simply a community that listens, we are here for you.
+    </p>
+    <p>
+      Join us in fostering a healthier, more supportive college environment. Let’s start the conversation and take a step
+      toward better mental health—together.
+    </p>
+  </div>
+  
+  <!-- Social Media Section -->
+  <div id="socialMedia">
+    <h2>Facebook: ClearMind</h2>
+    <h2>Instagram: ClearMind</h2>
+    <h2>TikTok: ClearMind</h2>
+  </div>
+  
+  <!-- Chatbox (initially hidden) -->
+  <div id="chatbox">
+    <label>From: <span id="userEmail"></span></label>
+    <textarea id="userMessage" placeholder="Type your message here..."></textarea>
+    <button onclick="sendMessage()">Send</button>
+  </div>
+  
+  <script>
+    // Redirect to the 988 Suicide & Crisis Lifeline website
+    function redirectToHelp() {
+      window.open("https://988lifeline.org/", "_blank");
+    }
+  
+    // Prompt for the user's Gmail address, then show the chatbox
+    function promptForGmail() {
+      const email = prompt("Please enter your Gmail account:");
+      if (email) {
+        document.getElementById("userEmail").textContent = email;
+        document.getElementById("chatbox").style.display = "block";
+      }
+    }
+  
+    // Opens the default email client with a pre-filled message
+    function sendMessage() {
+      const userEmail = document.getElementById("userEmail").textContent;
+      const userMessage = document.getElementById("userMessage").value;
+  
+      if (!userMessage.trim()) {
+        alert("Please type a message before sending.");
+        return;
+      }
+  
+      const mailtoLink =
+        "mailto:princeshernandez18@gmail.com"
+        + "?subject=" + encodeURIComponent("Message from " + userEmail)
+        + "&body=" + encodeURIComponent(userMessage);
+  
+      window.location.href = mailtoLink;
+  
+      // Clear and hide the chatbox
+      document.getElementById("chatbox").style.display = "none";
+      document.getElementById("userMessage").value = "";
+    }
+  </script>
+  
+</body>
+</html>
+
